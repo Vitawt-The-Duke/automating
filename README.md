@@ -1,2 +1,1 @@
-# automating
-all automated stuff
+use first ARG as a desired hostname
