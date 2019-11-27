@@ -7,10 +7,10 @@ EXTPORT="$2"
 #cd /upsource
 #mkdir -p -m 750 data logs conf backups
 ufw allow from "$REMOTEHOST"/32 to any port "$EXTPORT"
-docker run --name upsource-$(date +"%m:%S_%d_%Y") --memory=7g -d  \
+docker run --name upsource-$(date +"%M-%S_%d_%Y") --memory=7g -d  \
 -v /upsource/data:/opt/upsource/data \
 -v /upsource/conf:/opt/upsource/conf \
 -v /upsource/logs:/opt/upsource/logs \
 -v /upsource/backups:/opt/upsource/backups \
--p "$EXTPORT":8080 \
-jetbrains/upsource:"$UPSOURCEVER"
+-p "$EXTPORT":8080 --ulimit nofile=65536:65536 \
+-it jetbrains/upsource:"$UPSOURCEVER"
