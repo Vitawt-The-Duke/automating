@@ -1,0 +1,2 @@
+# automating
+all automated stuff
